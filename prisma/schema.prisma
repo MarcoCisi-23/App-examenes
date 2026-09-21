@@ -1,0 +1,109 @@
+// Prisma schema — ART Sanidad Móvil
+// https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Evaluador {
+  id                  String             @id @default(cuid())
+  cuit                String             @unique // solo dígitos, sin guiones
+  passwordHash        String
+  nombre              String
+  apellido            String
+  especialidad        String
+  matriculaNacional   String?
+  matriculaProvincial String?
+  cuitProfesional     String?
+  centroMedico        String?
+  createdAt           DateTime           @default(now())
+  asignaciones        AsignacionExamen[]
+}
+
+model Empresa {
+  id           String       @id @default(cuid())
+  cuit         String       @unique
+  razonSocial  String
+  rubro        String?
+  lotes        Lote[]
+  trabajadores Trabajador[]
+}
+
+model Lote {
+  id             String             @id @default(cuid())
+  codigo         String             @unique // "OP-2024-81"
+  campaniaNombre String             // "Campaña Periódica 2024"
+  empresaId      String
+  empresa        Empresa            @relation(fields: [empresaId], references: [id])
+  tipoExamen     String
+  ubicacion      String
+  fechaLimite    DateTime
+  estado         String             // PENDIENTE | EN_CURSO | PRIORIDAD_ALTA | FINALIZADO
+  createdAt      DateTime           @default(now())
+  asignaciones   AsignacionExamen[]
+}
+
+model Trabajador {
+  id              String             @id @default(cuid())
+  dni             String
+  nombre          String
+  apellido        String
+  sexo            String             // "M" | "F" | "X"
+  fechaNacimiento DateTime
+  puesto          String
+  empresaId       String
+  empresa         Empresa            @relation(fields: [empresaId], references: [id])
+  antiguedadAnios Int
+  factoresRiesgo  String             // JSON.stringify(string[])
+  asignaciones    AsignacionExamen[]
+
+  @@unique([empresaId, dni])
+}
+
+model AsignacionExamen {
+  id                   String             @id @default(cuid())
+  loteId               String
+  lote                 Lote               @relation(fields: [loteId], references: [id])
+  trabajadorId         String
+  trabajador           Trabajador         @relation(fields: [trabajadorId], references: [id])
+  estado               String             // PENDIENTE | EN_CURSO | COMPLETADO
+  dictamen             String?            // APTO | APTO_CON_PREEXISTENCIAS | NO_APTO_TEMPORAL
+  observacionesMedicas String?
+  evaluadorId          String?
+  evaluador            Evaluador?         @relation(fields: [evaluadorId], references: [id])
+  turnoEtiqueta        String?            // texto libre, ej. "Hoy 09:30 hs"
+  completadoEn         DateTime?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  estudiosRequeridos   EstudioRequerido[]
+
+  @@unique([loteId, trabajadorId])
+}
+
+model EstudioRequerido {
+  id           String            @id @default(cuid())
+  asignacionId String
+  asignacion   AsignacionExamen  @relation(fields: [asignacionId], references: [id])
+  tipo         String            // CLINICO_GENERAL | AUDIOMETRIA | LABORATORIO_BIOQUIMICO | ESPIROMETRIA_RX
+  orden        Int               @default(0)
+  resultado    EstudioResultado?
+
+  @@unique([asignacionId, tipo])
+}
+
+model EstudioResultado {
+  id                 String           @id @default(cuid())
+  estudioRequeridoId String           @unique
+  estudioRequerido   EstudioRequerido @relation(fields: [estudioRequeridoId], references: [id])
+  estado             String           // PENDIENTE | LISTO | CARGADO
+  datos              String?          // JSON.stringify(datos específicos del tipo de estudio)
+  archivoNombre      String?
+  archivoTamanioKb   Int?
+  completadoEn       DateTime?
+  updatedAt          DateTime         @updatedAt
+}
