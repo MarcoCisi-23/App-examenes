@@ -27,15 +27,6 @@ export function RealizadosInteractive({ lotes }: { lotes: LoteRealizado[] }) {
 
   return (
     <section className="flex flex-col gap-space-sm">
-      <div className="flex items-center justify-between">
-        <h2 className="font-headline-sm text-headline-sm text-on-surface">
-          Listos para Exportar
-        </h2>
-        <span className="font-label-sm text-label-sm text-on-surface-variant">
-          {lotes.length} {lotes.length === 1 ? "lote" : "lotes"}
-        </span>
-      </div>
-
       {lotes.length > 0 && (
         <SearchBar
           value={busqueda}

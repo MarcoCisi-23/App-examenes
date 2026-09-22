@@ -11,8 +11,8 @@ export function ExamCard({ lote }: { lote: LoteConProgreso }) {
   const finalizado = lote.estado === "FINALIZADO";
 
   return (
-    <article className="flex flex-col bg-surface-container-lowest rounded-xl p-space-md shadow-card">
-      <div className="flex items-start justify-between gap-space-xs mb-space-xs">
+    <article className="flex flex-col gap-space-xs bg-surface-container-lowest rounded-xl p-space-md shadow-card">
+      <div className="flex items-start justify-between gap-space-xs">
         <div className="flex flex-col min-w-0">
           <span className="font-label-sm text-label-sm text-primary uppercase font-semibold tracking-wider">
             Lote {lote.codigo}
@@ -26,40 +26,28 @@ export function ExamCard({ lote }: { lote: LoteConProgreso }) {
         </Badge>
       </div>
 
-      <p className="font-body-sm text-body-sm text-on-surface-variant mb-space-sm flex items-center gap-1.5">
-        <span className="material-symbols-outlined text-[18px] text-tertiary">
-          science
-        </span>
+      <p className="font-body-sm text-body-sm text-on-surface-variant">
         {lote.tipoExamen}
       </p>
 
-      <div className="grid grid-cols-2 gap-space-xs bg-surface-container-low rounded-lg p-space-sm mb-space-sm text-body-sm">
-        <div className="flex items-center gap-1.5 text-on-surface-variant">
-          <span className="material-symbols-outlined text-[18px]">event</span>
-          <span>
-            Límite:{" "}
-            <strong className="text-on-surface">
-              {format(lote.fechaLimite, "d MMM", { locale: es })}
-            </strong>
+      <div className="flex items-center gap-space-md font-body-sm text-body-sm text-on-surface-variant">
+        <span className="flex items-center gap-1 shrink-0">
+          <span className="material-symbols-outlined text-[16px]">event</span>
+          {format(lote.fechaLimite, "d MMM", { locale: es })}
+        </span>
+        <span className="flex items-center gap-1 min-w-0">
+          <span className="material-symbols-outlined text-[16px] shrink-0">
+            location_on
           </span>
-        </div>
-        <div className="flex items-center gap-1.5 text-on-surface-variant truncate">
-          <span className="material-symbols-outlined text-[18px]">location_on</span>
           <span className="truncate">{lote.ubicacion}</span>
-        </div>
+        </span>
       </div>
 
-      <div className="flex flex-col gap-1 mb-space-md">
-        <div className="flex justify-between items-center text-label-sm font-label-sm">
-          <span className="text-on-surface-variant">
-            Completados:{" "}
-            <strong className="text-on-surface">
-              {lote.completados} de {lote.total}
-            </strong>
-          </span>
-          <span className="text-primary font-semibold">{lote.progresoPct}%</span>
-        </div>
-        <ProgressBar pct={lote.progresoPct} />
+      <div className="flex items-center gap-space-sm">
+        <ProgressBar pct={lote.progresoPct} className="flex-1" />
+        <span className="font-label-sm text-label-sm text-on-surface-variant shrink-0">
+          {lote.completados}/{lote.total} · {lote.progresoPct}%
+        </span>
       </div>
 
       <Link

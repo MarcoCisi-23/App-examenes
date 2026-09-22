@@ -9,6 +9,7 @@ const rubik = Rubik({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://art-sanidad-movil.vercel.app"),
   title: "ART Sanidad Móvil",
   description: "Exámenes médicos periódicos — ANDINA ART",
   appleWebApp: {
