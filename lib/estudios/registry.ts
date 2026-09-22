@@ -21,7 +21,6 @@ export interface DefinicionEstudio {
   tipo: TipoEstudio;
   label: string;
   icon: string;
-  descripcion: string;
   campos: CampoEstudio[];
   schema: z.ZodTypeAny;
 }
@@ -58,7 +57,6 @@ export const ESTUDIOS_REGISTRY: Record<TipoEstudio, DefinicionEstudio> = {
     tipo: "CLINICO_GENERAL",
     label: "Examen Clínico General y Anamnesis",
     icon: "stethoscope",
-    descripcion: "Signos vitales y evaluación clínica general",
     schema: clinicoGeneralSchema,
     campos: [
       {
@@ -105,7 +103,6 @@ export const ESTUDIOS_REGISTRY: Record<TipoEstudio, DefinicionEstudio> = {
     tipo: "AUDIOMETRIA",
     label: "Audiometría Tonal Laboral",
     icon: "hearing",
-    descripcion: "Vía aérea y ósea bilateral (dB)",
     schema: audiometriaSchema,
     campos: [
       { name: "oidoDerechoDb", label: "Oído Derecho", type: "number", unit: "dB" },
@@ -117,7 +114,6 @@ export const ESTUDIOS_REGISTRY: Record<TipoEstudio, DefinicionEstudio> = {
     tipo: "LABORATORIO_BIOQUIMICO",
     label: "Laboratorio Bioquímico",
     icon: "science",
-    descripcion: "Protocolo de laboratorio adjunto",
     schema: laboratorioBioquimicoSchema,
     campos: [
       { name: "fechaMuestra", label: "Fecha de Muestra", type: "text", placeholder: "DD/MM/AAAA" },
@@ -129,7 +125,6 @@ export const ESTUDIOS_REGISTRY: Record<TipoEstudio, DefinicionEstudio> = {
     tipo: "ESPIROMETRIA_RX",
     label: "Espirometría / Rx Tórax",
     icon: "air",
-    descripcion: "Sin informe de imágenes adjunto",
     schema: espirometriaRxSchema,
     campos: [
       {

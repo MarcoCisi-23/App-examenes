@@ -44,3 +44,9 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# coding-agent skills (installed via `npx skills add`) — local tooling,
+# not part of the deployed app
+.agents/
+.claude/skills/
+skills-lock.json

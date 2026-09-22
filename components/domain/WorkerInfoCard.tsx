@@ -28,29 +28,29 @@ export function WorkerInfoCard({
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-space-xs bg-surface-container-low rounded-lg p-space-sm text-center mb-space-sm">
-        <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-wrap gap-x-space-lg gap-y-1 mb-space-sm">
+        <div>
+          <span className="font-label-sm text-label-sm text-on-surface-variant">
+            DNI{" "}
+          </span>
           <span className="font-label-md text-label-md text-on-surface">
             {trabajador.dni}
           </span>
-          <span className="font-label-sm text-label-sm text-on-surface-variant">
-            DNI
-          </span>
         </div>
-        <div className="flex flex-col items-center justify-center">
+        <div>
+          <span className="font-label-sm text-label-sm text-on-surface-variant">
+            Edad{" "}
+          </span>
           <span className="font-label-md text-label-md text-on-surface">
-            {trabajador.edad}a ({SEXO_LABEL[trabajador.sexo] ?? trabajador.sexo})
-          </span>
-          <span className="font-label-sm text-label-sm text-on-surface-variant">
-            Edad/Sexo
+            {trabajador.edad} ({SEXO_LABEL[trabajador.sexo] ?? trabajador.sexo})
           </span>
         </div>
-        <div className="flex flex-col items-center justify-center">
+        <div>
+          <span className="font-label-sm text-label-sm text-on-surface-variant">
+            Nacimiento{" "}
+          </span>
           <span className="font-label-md text-label-md text-on-surface">
             {format(trabajador.fechaNacimiento, "dd/MM/yyyy", { locale: es })}
-          </span>
-          <span className="font-label-sm text-label-sm text-on-surface-variant">
-            Nacimiento
           </span>
         </div>
       </div>

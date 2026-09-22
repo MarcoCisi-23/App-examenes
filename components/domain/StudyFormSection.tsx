@@ -24,14 +24,9 @@ export function StudyFormSection({
           <span className="material-symbols-outlined text-primary text-[22px] shrink-0">
             {definicion.icon}
           </span>
-          <div className="min-w-0">
-            <h3 className="font-title text-title text-on-surface">
-              {definicion.label}
-            </h3>
-            <p className="font-body-sm text-body-sm text-on-surface-variant">
-              {definicion.descripcion}
-            </p>
-          </div>
+          <h3 className="font-title text-title text-on-surface min-w-0">
+            {definicion.label}
+          </h3>
         </div>
         <span
           className={`shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-label-sm text-label-sm ${

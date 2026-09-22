@@ -14,21 +14,17 @@ export function ExamCard({ lote }: { lote: LoteConProgreso }) {
     <article className="flex flex-col gap-space-xs bg-surface-container-lowest rounded-xl p-space-md shadow-card">
       <div className="flex items-start justify-between gap-space-xs">
         <div className="flex flex-col min-w-0">
-          <span className="font-label-sm text-label-sm text-primary uppercase font-semibold tracking-wider">
-            Lote {lote.codigo}
-          </span>
-          <h3 className="font-title text-title text-on-surface leading-tight mt-0.5 truncate">
+          <h3 className="font-title text-title text-on-surface leading-tight truncate">
             {lote.empresaNombre}
           </h3>
+          <p className="font-body-sm text-body-sm text-on-surface-variant">
+            Lote {lote.codigo} · {lote.tipoExamen}
+          </p>
         </div>
         <Badge icon={badge.icon} className={badge.className}>
           {badge.label}
         </Badge>
       </div>
-
-      <p className="font-body-sm text-body-sm text-on-surface-variant">
-        {lote.tipoExamen}
-      </p>
 
       <div className="flex items-center gap-space-md font-body-sm text-body-sm text-on-surface-variant">
         <span className="flex items-center gap-1 shrink-0">

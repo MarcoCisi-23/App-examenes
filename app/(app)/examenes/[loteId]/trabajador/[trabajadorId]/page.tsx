@@ -15,13 +15,6 @@ export default async function CargaExamenPage({
 
   return (
     <DrilldownShell title="Carga Estudio" backHref={`/examenes/${loteId}/nomina`}>
-      <div className="flex items-center gap-space-xs">
-        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">
-          <span className="material-symbols-outlined text-[14px]">assignment_ind</span>
-          {asignacion.lote.empresaNombre} • Lote {asignacion.lote.codigo}
-        </span>
-      </div>
-
       <WorkerInfoCard trabajador={asignacion.trabajador} />
 
       <ExamFormClient

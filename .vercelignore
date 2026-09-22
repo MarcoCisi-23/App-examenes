@@ -1,2 +1,5 @@
 .env
 .env.check
+.agents
+.claude/skills
+skills-lock.json

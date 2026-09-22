@@ -22,9 +22,6 @@ export function WorkerSheet({
       {worker && badge && (
         <div className="flex flex-col gap-space-md">
           <div>
-            <span className="inline-block px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm mb-space-xs">
-              Ficha Clínica de Ingreso
-            </span>
             <h2 className="font-headline-sm text-headline-sm text-on-surface">
               {worker.apellido}, {worker.nombre}
             </h2>
@@ -34,9 +31,6 @@ export function WorkerSheet({
           </div>
 
           <div className="bg-surface-container-low rounded-lg p-space-md">
-            <p className="font-label-md text-label-md text-on-surface-variant mb-1">
-              Estado del Protocolo
-            </p>
             <div className="flex items-center gap-2">
               <span className="material-symbols-outlined text-[20px] text-primary">
                 {badge.icon}
@@ -78,15 +72,16 @@ export function WorkerSheet({
           </div>
 
           <Link href={`/examenes/${loteId}/trabajador/${worker.trabajadorId}`}>
-            <Button variant="primary" icon={worker.estado === "COMPLETADO" ? "description" : "clinical_notes"} className="w-full">
+            <Button
+              variant="primary"
+              icon={worker.estado === "COMPLETADO" ? "description" : "clinical_notes"}
+              className="w-full"
+            >
               {worker.estado === "COMPLETADO"
                 ? "Ver Certificado Médico ART"
                 : "Cargar Examen en Box"}
             </Button>
           </Link>
-          <Button variant="secondary" onClick={onClose} className="w-full">
-            Cerrar
-          </Button>
         </div>
       )}
     </BottomSheet>

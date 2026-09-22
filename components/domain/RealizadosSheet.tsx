@@ -21,14 +21,12 @@ export function RealizadosSheet({
       {lote && (
         <div className="flex flex-col gap-space-md">
           <div>
-            <span className="font-label-sm text-label-sm text-primary uppercase font-semibold tracking-wider">
-              Lote {lote.loteCodigo}
-            </span>
             <h2 className="font-headline-sm text-headline-sm text-on-surface">
               {lote.empresaNombre}
             </h2>
             <p className="font-body-sm text-body-sm text-on-surface-variant">
-              {lote.cantidad} {lote.cantidad === 1 ? "examen" : "exámenes"} finalizados
+              Lote {lote.loteCodigo} · {lote.cantidad}{" "}
+              {lote.cantidad === 1 ? "examen" : "exámenes"} finalizados
             </p>
           </div>
 

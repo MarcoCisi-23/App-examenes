@@ -21,54 +21,19 @@ export default async function NominaPage({
 
   return (
     <DrilldownShell title="Detalle Examen" backHref="/examenes">
-      <section className="flex flex-col bg-surface-container-lowest rounded-xl p-space-md shadow-card">
-        <div className="flex items-center justify-between mb-space-xs">
-          <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
-            {lote.campaniaNombre}
-          </span>
-        </div>
+      <section className="flex flex-col gap-1">
         <h2 className="font-headline-sm text-headline-sm text-on-surface">
           {lote.empresaNombre}
         </h2>
-        <p className="font-body-sm text-body-sm text-on-surface-variant mb-space-md">
-          CUIT: {lote.empresaCuit} • Lote #{lote.codigo}
+        <p className="font-body-sm text-body-sm text-on-surface-variant">
+          Lote {lote.codigo} · {completados} de {total} completados
+          {pendientes > 0 && ` · ${pendientes} pendientes`}
         </p>
-
-        <div className="flex items-end justify-between mb-1.5">
-          <span className="font-body-sm text-body-sm text-on-surface-variant">
-            Avance
-          </span>
-          <span className="font-headline-md text-headline-md text-primary">
+        <div className="flex items-center gap-space-sm mt-1">
+          <ProgressBar pct={avancePct} className="flex-1" />
+          <span className="font-label-md text-label-md text-primary shrink-0">
             {avancePct}%
           </span>
-        </div>
-        <ProgressBar pct={avancePct} className="mb-space-md" />
-
-        <div className="grid grid-cols-3 gap-space-xs bg-surface-container-low rounded-lg p-space-sm text-center">
-          <div className="flex flex-col items-center justify-center">
-            <span className="font-headline-sm text-headline-sm text-on-surface">
-              {total}
-            </span>
-            <span className="font-label-sm text-label-sm text-on-surface-variant">
-              Nómina Total
-            </span>
-          </div>
-          <div className="flex flex-col items-center justify-center bg-surface-container-lowest rounded-md py-1 shadow-card">
-            <span className="font-headline-sm text-headline-sm text-primary">
-              {completados}
-            </span>
-            <span className="font-label-sm text-label-sm text-primary">
-              Completados
-            </span>
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <span className="font-headline-sm text-headline-sm text-on-tertiary-fixed-variant">
-              {pendientes}
-            </span>
-            <span className="font-label-sm text-label-sm text-on-surface-variant">
-              Pendientes
-            </span>
-          </div>
         </div>
       </section>
 

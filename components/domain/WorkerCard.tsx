@@ -37,11 +37,8 @@ export function WorkerCard({
               {badge.label}
             </Badge>
           </div>
-          <p className="font-body-sm text-body-sm text-on-surface-variant">
-            DNI: {worker.dni} • {worker.edad} años
-          </p>
-          <p className="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1 mt-0.5">
-            {worker.puesto}
+          <p className="font-body-sm text-body-sm text-on-surface-variant truncate">
+            DNI {worker.dni} • {worker.edad} años • {worker.puesto}
           </p>
           {worker.turnoEtiqueta && (
             <p className="font-label-sm text-label-sm text-primary mt-1">
