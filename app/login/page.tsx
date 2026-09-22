@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { LoginForm } from "@/components/domain/LoginForm";
 
 export default function LoginPage() {
@@ -5,11 +6,15 @@ export default function LoginPage() {
     <main className="flex-1 flex flex-col justify-center items-center min-h-dvh bg-surface px-margin-screen py-space-2xl">
       <div className="w-full max-w-sm flex flex-col items-center">
         <div className="mb-space-xl flex flex-col items-center gap-space-xs text-center">
-          <div className="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mb-space-xs shadow-md">
-            <span className="material-symbols-outlined text-on-primary text-[32px]">
-              health_and_safety
-            </span>
-          </div>
+          <Image
+            src="/brand/logo-full.png"
+            alt="Andina ART"
+            width={260}
+            height={105}
+            priority
+            unoptimized
+            className="mb-space-sm"
+          />
           <h1 className="font-headline-lg text-headline-lg text-on-surface">
             Iniciar Sesión
           </h1>

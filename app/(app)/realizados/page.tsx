@@ -1,5 +1,5 @@
 import { TabShell } from "@/components/layout/TabShell";
-import { RealizadosBatchCard } from "@/components/domain/RealizadosBatchCard";
+import { RealizadosInteractive } from "@/components/domain/RealizadosInteractive";
 import { StubActionButton } from "@/components/ui/StubActionButton";
 import { getExamenesRealizados } from "@/lib/queries/realizados";
 
@@ -45,22 +45,7 @@ export default async function RealizadosPage() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-space-xs">
-        <h2 className="font-headline-sm text-headline-sm text-on-surface">
-          Listos para Exportar
-        </h2>
-        {lotes.length === 0 ? (
-          <p className="font-body-md text-body-md text-on-surface-variant py-space-xl text-center">
-            Todavía no hay exámenes finalizados para exportar.
-          </p>
-        ) : (
-          <div className="flex flex-col gap-space-md">
-            {lotes.map((lote) => (
-              <RealizadosBatchCard key={lote.loteId} lote={lote} />
-            ))}
-          </div>
-        )}
-      </section>
+      <RealizadosInteractive lotes={lotes} />
 
       <section className="flex items-center gap-space-sm bg-surface-container-low rounded-xl p-space-md">
         <span className="material-symbols-outlined text-primary text-[24px]">

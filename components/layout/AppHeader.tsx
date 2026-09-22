@@ -1,13 +1,18 @@
+import Image from "next/image";
+
 export function AppHeader({ subtitle }: { subtitle: string }) {
   return (
     <header className="fixed top-0 left-0 right-0 z-30 pt-safe bg-surface-container-lowest/90 backdrop-blur border-b border-outline-variant/40">
       <div className="h-16 px-margin-screen flex items-center justify-between">
         <div className="flex items-center gap-space-sm">
-          <div className="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center">
-            <span className="material-symbols-outlined text-on-primary text-[20px]">
-              health_and_safety
-            </span>
-          </div>
+          <Image
+            src="/icons/mark.png"
+            alt="Andina ART"
+            width={36}
+            height={36}
+            unoptimized
+            className="rounded-lg"
+          />
           <div className="flex flex-col leading-tight">
             <span className="font-title text-title text-on-surface">
               Andina ART

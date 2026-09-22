@@ -16,10 +16,6 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: "ART Sanidad",
   },
-  icons: {
-    icon: "/icons/icon-512.png",
-    apple: "/icons/apple-touch-icon.png",
-  },
 };
 
 export const viewport: Viewport = {
