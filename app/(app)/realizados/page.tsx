@@ -1,6 +1,5 @@
 import { TabShell } from "@/components/layout/TabShell";
-import { RealizadosInteractive } from "@/components/domain/RealizadosInteractive";
-import { StubActionButton } from "@/components/ui/StubActionButton";
+import { RealizadosTable } from "@/components/domain/RealizadosTable";
 import { getExamenesRealizados } from "@/lib/queries/realizados";
 
 export default async function RealizadosPage() {
@@ -18,11 +17,7 @@ export default async function RealizadosPage() {
         </p>
       </section>
 
-      <RealizadosInteractive lotes={lotes} />
-
-      <StubActionButton variant="primary" icon="file_download" className="w-full">
-        Exportar Todos ({totalListos})
-      </StubActionButton>
+      <RealizadosTable lotes={lotes} />
     </TabShell>
   );
 }

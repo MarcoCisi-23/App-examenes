@@ -6,6 +6,8 @@ export interface LoteRealizado {
   loteCodigo: string;
   empresaNombre: string;
   cantidad: number;
+  /** Fecha del registro completado más reciente del lote. */
+  fechaRealizacion: Date | null;
   registros: {
     asignacionId: string;
     trabajadorNombre: string;
@@ -49,6 +51,9 @@ export async function getExamenesRealizados(): Promise<{
         loteCodigo: asig.lote.codigo,
         empresaNombre: asig.lote.empresa.razonSocial,
         cantidad: 1,
+        // Como `asignaciones` viene ordenado por completadoEn desc, el primer
+        // registro de cada lote es siempre el más reciente.
+        fechaRealizacion: asig.completadoEn,
         registros: [registro],
       });
     }
