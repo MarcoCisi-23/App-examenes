@@ -15,7 +15,10 @@ export interface LoteConProgreso {
 }
 
 export async function getLotesConProgreso(): Promise<LoteConProgreso[]> {
+  // Los lotes finalizados dejan de listarse acá: sus resultados se
+  // consultan desde la pantalla de Realizados.
   const lotes = await prisma.lote.findMany({
+    where: { estado: { not: "FINALIZADO" } },
     include: {
       empresa: true,
       asignaciones: { select: { estado: true } },

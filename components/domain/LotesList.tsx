@@ -5,7 +5,7 @@ import { clsx } from "clsx";
 import { ExamCard } from "@/components/domain/ExamCard";
 import type { LoteConProgreso } from "@/lib/queries/lotes";
 
-type Filtro = "todos" | "en-curso" | "prioridad-alta" | "vencer" | "vencidos";
+type Filtro = "todos" | "en-curso" | "vencer" | "vencidos";
 
 const DIAS_PROXIMO_A_VENCER = 14;
 
@@ -39,12 +39,6 @@ const BOTONES: {
     activeClassName: "bg-secondary-container text-on-secondary-container",
   },
   {
-    filtro: "prioridad-alta",
-    label: "Prioridad",
-    icon: "priority_high",
-    activeClassName: "bg-error-container text-on-error-container",
-  },
-  {
     filtro: "vencer",
     label: "Próximos a vencer",
     icon: "schedule",
@@ -64,7 +58,6 @@ export function LotesList({ lotes }: { lotes: LoteConProgreso[] }) {
   const contadores = useMemo(
     () => ({
       "en-curso": lotes.filter((l) => l.estado === "EN_CURSO").length,
-      "prioridad-alta": lotes.filter((l) => l.estado === "PRIORIDAD_ALTA").length,
       vencer: lotes.filter(esProximoAVencer).length,
       vencidos: lotes.filter(esVencido).length,
     }),
@@ -75,8 +68,6 @@ export function LotesList({ lotes }: { lotes: LoteConProgreso[] }) {
     switch (filtro) {
       case "en-curso":
         return lotes.filter((l) => l.estado === "EN_CURSO");
-      case "prioridad-alta":
-        return lotes.filter((l) => l.estado === "PRIORIDAD_ALTA");
       case "vencer":
         return lotes.filter(esProximoAVencer);
       case "vencidos":
@@ -88,7 +79,7 @@ export function LotesList({ lotes }: { lotes: LoteConProgreso[] }) {
 
   return (
     <>
-      <section className="grid grid-cols-2 gap-space-sm">
+      <section className="grid grid-cols-3 gap-space-sm">
         {BOTONES.map((boton) => {
           const active = filtro === boton.filtro;
           return (

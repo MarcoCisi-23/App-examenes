@@ -1,5 +1,4 @@
 import { AppHeader } from "@/components/layout/AppHeader";
-import { BottomTabBar } from "@/components/layout/BottomTabBar";
 
 const SUBTITLES = {
   examenes: "Exámenes",
@@ -16,11 +15,10 @@ export function TabShell({
 }) {
   return (
     <div className="min-h-dvh flex flex-col bg-surface">
-      <AppHeader subtitle={SUBTITLES[active]} />
-      <main className="flex-1 pt-16 pb-24 px-margin-screen flex flex-col gap-space-md">
+      <AppHeader subtitle={SUBTITLES[active]} active={active} />
+      <main className="flex-1 pt-16 pb-space-xl px-margin-screen flex flex-col gap-space-md">
         {children}
       </main>
-      <BottomTabBar active={active} />
     </div>
   );
 }
