@@ -1,0 +1,105 @@
+REGISTRO DE CAMBIOS FUNCIONALES — ART Sanidad Móvil
+=====================================================
+
+Este archivo lleva un registro, en lenguaje simple (no técnico), de las
+funcionalidades que se van agregando, modificando o quitando de la
+aplicación. Sirve para poder trackear con qué versión funcional se
+corresponde cada cambio pedido.
+
+Cada vez que se agrega o cambia algo en la app, se suma una entrada nueva
+al final del archivo, fechada, describiendo QUÉ cambió desde el punto de
+vista de uso (no de código).
+
+-----------------------------------------------------------------------------
+BASE FUNCIONAL — compilada el 2026-09-23 (resume todo lo construido hasta hoy)
+-----------------------------------------------------------------------------
+
+INGRESO A LA APP
+- Login con CUIT + contraseña contra una base interna de evaluadores
+  (sin integración real con AFIP/SRT todavía).
+- Sesión persistente en el celular (no hay que loguearse cada vez que se
+  abre la app).
+
+PANTALLA "EXÁMENES" (pantalla principal)
+- Lista de lotes/campañas de exámenes asignados al evaluador logueado.
+- Los lotes ya finalizados NO se muestran acá (se ven en "Realizados").
+- 3 botones grandes de filtro rápido: En curso / Próximos a vencer /
+  Vencidos.
+- Cada lote se muestra como una tarjeta simple con: empresa, código de
+  lote, periodicidad (Semestral/Anual), fecha límite, estado, y el
+  porcentaje de avance (sin barra de progreso, solo el número).
+- Botón único "Ver Detalle" para entrar a la nómina de cada lote.
+
+NÓMINA DE UN LOTE
+- Listado de los trabajadores incluidos en ese lote/campaña.
+- Buscador por nombre, apellido o DNI.
+- Filtro por pendientes / completados.
+- Tocar un trabajador abre su ficha con el detalle de los estudios que
+  tiene que completar.
+
+CARGA DE RESULTADOS DE UN EXAMEN (ficha de un trabajador)
+- Ficha del trabajador con: nombre, antigüedad, DNI, edad, fecha de
+  nacimiento y factores de riesgo ART declarados. No se muestra foto,
+  puesto ni empresa (la empresa ya se ve a nivel del lote).
+- Un formulario por cada tipo de estudio requerido (clínico general,
+  audiometría, laboratorio bioquímico, espirometría/RX), cada uno
+  colapsable/desplegable: los ya cargados arrancan cerrados y los
+  pendientes abiertos.
+- Sección de Dictamen Preliminar (apto / apto con preexistencias / no
+  apto temporal) + observaciones médicas, también colapsable.
+- Se puede guardar como borrador parcial (sin completar todo) o guardar
+  y finalizar el examen.
+
+PANTALLA "REALIZADOS"
+- Tabla con los exámenes ya completados: número de examen, empresa,
+  cantidad de trabajadores y fecha de realización.
+- Filtros desplegables por esos mismos campos.
+- Exportar es solo a nivel de un examen puntual (no existe un botón para
+  exportar todos juntos). Por ahora la exportación es solo de interfaz,
+  no genera un archivo real todavía.
+
+PANTALLA "MI PERFIL"
+- Datos del evaluador logueado (nombre, especialidad, matrículas, centro
+  médico, CUIT profesional).
+- Switch de modo sin conexión (placeholder).
+- Botón de cerrar sesión.
+
+NAVEGACIÓN
+- Header fijo arriba con el logo de Andina ART.
+- Menú de navegación mediante un botón de tres rayitas (hamburguesa)
+  arriba a la derecha del header, que despliega un panel lateral desde
+  la derecha con los accesos a Exámenes / Realizados / Mi Perfil.
+
+IDENTIDAD VISUAL / INFRAESTRUCTURA
+- Logo real de Andina ART como portada de login, ícono de la app y
+  cabecera.
+- Imagen de portada para cuando se comparte el link (redes/WhatsApp).
+- App instalable como PWA (ícono en el celular, sin necesidad de tienda
+  de aplicaciones).
+- Hosting en Vercel, base de datos en Neon (Postgres), con despliegue
+  automático cada vez que se sube un cambio al repositorio de GitHub.
+- Interfaz simplificada visualmente en las pantallas principales:
+  menos recuadros y datos innecesarios, foco en lo esencial de cada
+  pantalla.
+
+-----------------------------------------------------------------------------
+2026-09-23
+-----------------------------------------------------------------------------
+- El menú lateral (tres rayitas) se corrigió para que se vea sólido y a
+  pantalla completa al abrirse (antes se veía traslúcido/recortado por
+  un problema visual).
+- El menú lateral ahora se abre desde la derecha (antes se abría desde
+  la izquierda), para coincidir con la posición del botón de tres
+  rayitas.
+- En "Exámenes" se sacó el texto "Campaña Periódica 2024" y el
+  porcentaje de completitud general que aparecían arriba de todo (no
+  aportaban información útil ahí).
+- El título de cada pantalla principal (Exámenes, Realizados, Mi Perfil)
+  ahora se ve centrado y más grande, de forma consistente entre las
+  tres.
+- En la carga de resultados de un examen: las secciones de cada estudio
+  y la de Dictamen Preliminar ahora son colapsables/desplegables.
+- En la ficha del trabajador (pantalla de carga de examen) se sacó el
+  círculo con las iniciales, el puesto y el nombre de la empresa (la
+  empresa ya se ve a nivel del examen/lote; no habrá fotos de las
+  personas).
