@@ -52,8 +52,8 @@ export function NavDrawer({
       />
       <nav
         className={clsx(
-          "absolute top-0 left-0 bottom-0 w-64 max-w-[80%] bg-surface-container-lowest shadow-modal pt-safe pb-safe flex flex-col transition-transform duration-300",
-          open ? "translate-x-0" : "-translate-x-full",
+          "absolute top-0 right-0 bottom-0 w-64 max-w-[80%] bg-surface-container-lowest shadow-modal pt-safe pb-safe flex flex-col transition-transform duration-300",
+          open ? "translate-x-0" : "translate-x-full",
         )}
       >
         <div className="h-16 px-space-md flex items-center justify-between border-b border-outline-variant/40 shrink-0">
