@@ -28,7 +28,7 @@ export function ExamCard({ lote }: { lote: LoteConProgreso }) {
       <div className="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
         <span className="flex items-center gap-1">
           <span className="material-symbols-outlined text-[16px]">event</span>
-          {format(lote.fechaLimite, "d MMM", { locale: es })}
+          {format(lote.fechaLimite, "dd/MM/yyyy", { locale: es })}
         </span>
         <span className="font-label-sm text-label-sm text-primary">
           {lote.progresoPct}% completado

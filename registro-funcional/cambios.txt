@@ -103,3 +103,13 @@ IDENTIDAD VISUAL / INFRAESTRUCTURA
   círculo con las iniciales, el puesto y el nombre de la empresa (la
   empresa ya se ve a nivel del examen/lote; no habrá fotos de las
   personas).
+- Todas las fechas que se muestran en la app (fecha límite del lote,
+  fecha de nacimiento, fecha de realización en Realizados) ahora usan
+  el mismo formato dd/mm/aaaa en todas las pantallas.
+- Las secciones colapsables de la carga de examen (cada estudio y el
+  Dictamen Preliminar) ahora arrancan siempre cerradas por defecto.
+- Se sacó el texto "Listo para cargar" / "Cargado" de cada estudio: en
+  su lugar queda solo un ícono simple — un tilde cuando el estudio está
+  completo, y unas flechas circulares cuando todavía está en curso.
+- Se sacó también el círculo azul con las iniciales de cada trabajador
+  en la nómina (vista de detalle de un examen/lote).

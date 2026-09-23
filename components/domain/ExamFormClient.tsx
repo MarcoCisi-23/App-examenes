@@ -81,7 +81,7 @@ export function ExamFormClient({
         />
       ))}
 
-      <details className="group bg-surface-container-lowest rounded-xl shadow-card" open>
+      <details className="group bg-surface-container-lowest rounded-xl shadow-card">
         <summary className="flex items-center justify-between p-space-md cursor-pointer list-none [&::-webkit-details-marker]:hidden">
           <h2 className="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[22px]">

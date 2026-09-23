@@ -18,10 +18,7 @@ export function StudyFormSection({
   };
 
   return (
-    <details
-      className="group bg-surface-container-lowest rounded-xl shadow-card"
-      open={!cargado}
-    >
+    <details className="group bg-surface-container-lowest rounded-xl shadow-card">
       <summary className="flex items-center justify-between p-space-md cursor-pointer list-none [&::-webkit-details-marker]:hidden">
         <div className="flex items-center gap-space-xs min-w-0">
           <span className="material-symbols-outlined text-primary text-[22px] shrink-0">
@@ -33,16 +30,11 @@ export function StudyFormSection({
         </div>
         <div className="flex items-center gap-space-xs shrink-0">
           <span
-            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-label-sm text-label-sm ${
-              cargado
-                ? "bg-success-container text-on-success-container"
-                : "bg-surface-variant text-on-surface-variant"
+            className={`material-symbols-outlined text-[22px] ${
+              cargado ? "text-success" : "text-on-surface-variant"
             }`}
           >
-            <span className="material-symbols-outlined text-[14px]">
-              {cargado ? "check_circle" : "edit"}
-            </span>
-            {cargado ? "Cargado" : "Listo para cargar"}
+            {cargado ? "check_circle" : "autorenew"}
           </span>
           <span className="material-symbols-outlined text-on-surface-variant text-[20px] transition-transform group-open:rotate-180">
             expand_more

@@ -195,7 +195,7 @@ export function RealizadosTable({ lotes }: { lotes: LoteRealizado[] }) {
                     </td>
                     <td className="font-body-md text-body-md text-on-surface-variant px-space-sm py-space-sm whitespace-nowrap">
                       {lote.fechaRealizacion
-                        ? format(lote.fechaRealizacion, "d MMM", { locale: es })
+                        ? format(lote.fechaRealizacion, "dd/MM/yyyy", { locale: es })
                         : "—"}
                     </td>
                   </tr>
