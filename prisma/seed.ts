@@ -15,6 +15,15 @@ function fechaNacimientoDesdeEdad(edad: number): Date {
   return new Date(`${anioNacimiento}-03-15T00:00:00.000Z`);
 }
 
+/** Fecha relativa a hoy, para que los lotes "vencidos"/"próximos a vencer" sigan
+ * teniendo sentido sin importar cuándo se corra el seed. */
+function diasDesdeHoy(dias: number): Date {
+  const fecha = new Date();
+  fecha.setHours(0, 0, 0, 0);
+  fecha.setDate(fecha.getDate() + dias);
+  return fecha;
+}
+
 interface TrabajadorSeed {
   dni: string;
   nombre: string;
@@ -108,13 +117,13 @@ async function main() {
   await prisma.empresa.deleteMany();
   await prisma.evaluador.deleteMany();
 
-  console.log("Creando evaluadora demo...");
+  console.log("Creando evaluador demo...");
   const evaluador = await prisma.evaluador.create({
     data: {
       cuit: DEMO_CUIT,
       passwordHash: await hashPassword(DEMO_PASSWORD),
-      nombre: "Silvina",
-      apellido: "Mensah",
+      nombre: "Marco",
+      apellido: "Cisilino",
       especialidad: "Medicina Laboral y Salud Ocupacional",
       matriculaNacional: "MN 142.859",
       matriculaProvincial: "MP 45.221",
@@ -134,7 +143,8 @@ async function main() {
       empresaId: techlog.id,
       tipoExamen: "Periódico Anual Riesgo Físico / Químico",
       ubicacion: "Polo Químico Zárate",
-      fechaLimite: new Date("2026-11-18"),
+      periodicidad: "ANUAL",
+      fechaLimite: diasDesdeHoy(60),
       estado: "EN_CURSO",
     },
   });
@@ -149,7 +159,8 @@ async function main() {
       empresaId: pampeana.id,
       tipoExamen: "Periódico Auditivo y Psicotécnico (Larga Distancia)",
       ubicacion: "Base Operativa Sur",
-      fechaLimite: new Date("2026-11-22"),
+      periodicidad: "ANUAL",
+      fechaLimite: diasDesdeHoy(5),
       estado: "PRIORIDAD_ALTA",
     },
   });
@@ -164,7 +175,8 @@ async function main() {
       empresaId: construcciones.id,
       tipoExamen: "Examen Biológico y Ergonómico (Posturas Forzadas)",
       ubicacion: "Av. Costanera 1420",
-      fechaLimite: new Date("2026-11-30"),
+      periodicidad: "SEMESTRAL",
+      fechaLimite: diasDesdeHoy(-10),
       estado: "PENDIENTE",
     },
   });
@@ -179,7 +191,8 @@ async function main() {
       empresaId: metalurgica.id,
       tipoExamen: "Monitoreo Semestral Ruido Industrial",
       ubicacion: "Parque Ind. Almirante Brown",
-      fechaLimite: new Date("2026-08-15"),
+      periodicidad: "SEMESTRAL",
+      fechaLimite: diasDesdeHoy(-30),
       estado: "FINALIZADO",
     },
   });

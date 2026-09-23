@@ -1,6 +1,5 @@
 import { TabShell } from "@/components/layout/TabShell";
 import { LotesList } from "@/components/domain/LotesList";
-import { ProgressBar } from "@/components/ui/ProgressBar";
 import { getLotesConProgreso, getResumenGlobal } from "@/lib/queries/lotes";
 
 export default async function ExamenesPage() {
@@ -9,17 +8,18 @@ export default async function ExamenesPage() {
 
   return (
     <TabShell active="examenes">
-      <section className="flex flex-col gap-1.5">
+      <section className="flex items-center justify-between gap-space-sm">
         <h1 className="font-headline-md text-headline-md text-on-surface">
           Campaña Periódica 2024
         </h1>
-        <div className="flex items-center justify-between text-label-md font-label-md">
-          <span className="text-on-surface-variant">
-            {resumen.completados} de {resumen.trabajadores} completados
+        <div className="flex flex-col items-end shrink-0">
+          <span className="font-headline-sm text-headline-sm text-primary">
+            {resumen.progresoPct}%
           </span>
-          <span className="text-primary font-title">{resumen.progresoPct}%</span>
+          <span className="font-label-sm text-label-sm text-on-surface-variant">
+            {resumen.completados}/{resumen.trabajadores} completados
+          </span>
         </div>
-        <ProgressBar pct={resumen.progresoPct} />
       </section>
 
       <LotesList lotes={lotes} />

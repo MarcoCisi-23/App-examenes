@@ -34,3 +34,11 @@ export const ESTADO_LOTE_LABEL: Record<EstadoLote, string> = {
   PRIORIDAD_ALTA: "Prioridad Alta",
   FINALIZADO: "Finalizado",
 };
+
+export const PERIODICIDADES_LOTE = ["SEMESTRAL", "ANUAL"] as const;
+export type PeriodicidadLote = (typeof PERIODICIDADES_LOTE)[number];
+
+export const PERIODICIDAD_LOTE_LABEL: Record<PeriodicidadLote, string> = {
+  SEMESTRAL: "Semestral",
+  ANUAL: "Anual",
+};

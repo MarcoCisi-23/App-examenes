@@ -21,7 +21,7 @@ export default async function PerfilPage() {
       <section className="flex flex-col items-center text-center gap-1">
         <Avatar nombre={evaluador.nombre} apellido={evaluador.apellido} size="lg" />
         <h1 className="font-headline-sm text-headline-sm text-on-surface">
-          Dra. {evaluador.nombre} {evaluador.apellido}
+          Dr. {evaluador.nombre} {evaluador.apellido}
         </h1>
         <p className="font-body-sm text-body-sm text-on-surface-variant">
           {evaluador.especialidad}

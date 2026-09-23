@@ -42,6 +42,7 @@ model Lote {
   empresa        Empresa            @relation(fields: [empresaId], references: [id])
   tipoExamen     String
   ubicacion      String
+  periodicidad   String             @default("ANUAL") // SEMESTRAL | ANUAL
   fechaLimite    DateTime
   estado         String             // PENDIENTE | EN_CURSO | PRIORIDAD_ALTA | FINALIZADO
   createdAt      DateTime           @default(now())

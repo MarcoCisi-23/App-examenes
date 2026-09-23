@@ -1,13 +1,12 @@
 import { prisma } from "@/lib/db";
-import type { EstadoLote } from "@/lib/types";
+import type { EstadoLote, PeriodicidadLote } from "@/lib/types";
 
 export interface LoteConProgreso {
   id: string;
   codigo: string;
   campaniaNombre: string;
   empresaNombre: string;
-  tipoExamen: string;
-  ubicacion: string;
+  periodicidad: PeriodicidadLote;
   fechaLimite: Date;
   estado: EstadoLote;
   total: number;
@@ -35,8 +34,7 @@ export async function getLotesConProgreso(): Promise<LoteConProgreso[]> {
       codigo: lote.codigo,
       campaniaNombre: lote.campaniaNombre,
       empresaNombre: lote.empresa.razonSocial,
-      tipoExamen: lote.tipoExamen,
-      ubicacion: lote.ubicacion,
+      periodicidad: lote.periodicidad as PeriodicidadLote,
       fechaLimite: lote.fechaLimite,
       estado: lote.estado as EstadoLote,
       total,

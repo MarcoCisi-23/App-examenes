@@ -2,13 +2,12 @@ import Link from "next/link";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Badge } from "@/components/ui/Badge";
-import { ProgressBar } from "@/components/ui/ProgressBar";
 import { loteBadgeInfo } from "@/lib/estadoUi";
+import { PERIODICIDAD_LOTE_LABEL } from "@/lib/types";
 import type { LoteConProgreso } from "@/lib/queries/lotes";
 
 export function ExamCard({ lote }: { lote: LoteConProgreso }) {
   const badge = loteBadgeInfo(lote.estado);
-  const finalizado = lote.estado === "FINALIZADO";
 
   return (
     <article className="flex flex-col gap-space-xs bg-surface-container-lowest rounded-xl p-space-md shadow-card">
@@ -18,7 +17,7 @@ export function ExamCard({ lote }: { lote: LoteConProgreso }) {
             {lote.empresaNombre}
           </h3>
           <p className="font-body-sm text-body-sm text-on-surface-variant">
-            Lote {lote.codigo} · {lote.tipoExamen}
+            Lote {lote.codigo} · {PERIODICIDAD_LOTE_LABEL[lote.periodicidad]}
           </p>
         </div>
         <Badge icon={badge.icon} className={badge.className}>
@@ -26,23 +25,13 @@ export function ExamCard({ lote }: { lote: LoteConProgreso }) {
         </Badge>
       </div>
 
-      <div className="flex items-center gap-space-md font-body-sm text-body-sm text-on-surface-variant">
-        <span className="flex items-center gap-1 shrink-0">
+      <div className="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant">
+        <span className="flex items-center gap-1">
           <span className="material-symbols-outlined text-[16px]">event</span>
           {format(lote.fechaLimite, "d MMM", { locale: es })}
         </span>
-        <span className="flex items-center gap-1 min-w-0">
-          <span className="material-symbols-outlined text-[16px] shrink-0">
-            location_on
-          </span>
-          <span className="truncate">{lote.ubicacion}</span>
-        </span>
-      </div>
-
-      <div className="flex items-center gap-space-sm">
-        <ProgressBar pct={lote.progresoPct} className="flex-1" />
-        <span className="font-label-sm text-label-sm text-on-surface-variant shrink-0">
-          {lote.completados}/{lote.total} · {lote.progresoPct}%
+        <span className="font-label-sm text-label-sm text-primary">
+          {lote.progresoPct}% completado
         </span>
       </div>
 
@@ -52,9 +41,9 @@ export function ExamCard({ lote }: { lote: LoteConProgreso }) {
       >
         <span className="flex items-center gap-2">
           <span className="material-symbols-outlined text-primary text-[20px]">
-            group
+            info
           </span>
-          {finalizado ? "Ver Historial de Nómina" : "Ver Nómina de Trabajadores"}
+          Ver Detalle
         </span>
         <span className="material-symbols-outlined text-on-surface-variant">
           chevron_right
