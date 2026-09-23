@@ -46,13 +46,3 @@ export async function getLotesConProgreso(): Promise<LoteConProgreso[]> {
     };
   });
 }
-
-export async function getResumenGlobal(lotes: LoteConProgreso[]) {
-  const trabajadores = lotes.reduce((acc, l) => acc + l.total, 0);
-  const completados = lotes.reduce((acc, l) => acc + l.completados, 0);
-  const pendientes = trabajadores - completados;
-  const progresoPct =
-    trabajadores === 0 ? 0 : Math.round((completados / trabajadores) * 1000) / 10;
-
-  return { trabajadores, completados, pendientes, progresoPct };
-}

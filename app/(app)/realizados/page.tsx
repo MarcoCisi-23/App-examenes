@@ -7,8 +7,8 @@ export default async function RealizadosPage() {
 
   return (
     <TabShell active="realizados">
-      <section className="flex flex-col gap-1">
-        <h1 className="font-headline-md text-headline-md text-on-surface">
+      <section className="flex flex-col items-center gap-1 text-center">
+        <h1 className="font-headline-lg text-headline-lg text-on-surface">
           Exámenes Realizados
         </h1>
         <p className="font-body-sm text-body-sm text-on-surface-variant">

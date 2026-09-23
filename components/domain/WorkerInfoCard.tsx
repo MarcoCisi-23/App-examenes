@@ -1,6 +1,5 @@
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { Avatar } from "@/components/ui/Avatar";
 import type { AsignacionDetalle } from "@/lib/queries/trabajadores";
 
 const SEXO_LABEL: Record<string, string> = { M: "M", F: "F", X: "X" };
@@ -12,20 +11,13 @@ export function WorkerInfoCard({
 }) {
   return (
     <section className="bg-surface-container-lowest rounded-xl p-space-md shadow-card">
-      <div className="flex items-center gap-space-sm mb-space-sm">
-        <Avatar nombre={trabajador.nombre} apellido={trabajador.apellido} size="lg" />
-        <div className="min-w-0">
-          <h2 className="font-headline-sm text-headline-sm text-on-surface truncate">
-            {trabajador.apellido}, {trabajador.nombre}
-          </h2>
-          <p className="font-body-sm text-body-sm text-on-surface-variant truncate">
-            {trabajador.puesto}
-          </p>
-          <p className="font-body-sm text-body-sm text-on-surface-variant truncate">
-            Empresa: {trabajador.empresaNombre} • Antigüedad: {trabajador.antiguedadAnios}{" "}
-            años
-          </p>
-        </div>
+      <div className="mb-space-sm">
+        <h2 className="font-headline-sm text-headline-sm text-on-surface truncate">
+          {trabajador.apellido}, {trabajador.nombre}
+        </h2>
+        <p className="font-body-sm text-body-sm text-on-surface-variant truncate">
+          Antigüedad: {trabajador.antiguedadAnios} años
+        </p>
       </div>
 
       <div className="flex flex-wrap gap-x-space-lg gap-y-1 mb-space-sm">

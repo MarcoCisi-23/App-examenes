@@ -18,8 +18,11 @@ export function StudyFormSection({
   };
 
   return (
-    <section className="bg-surface-container-lowest rounded-xl p-space-md shadow-card">
-      <div className="flex items-center justify-between mb-space-sm">
+    <details
+      className="group bg-surface-container-lowest rounded-xl shadow-card"
+      open={!cargado}
+    >
+      <summary className="flex items-center justify-between p-space-md cursor-pointer list-none [&::-webkit-details-marker]:hidden">
         <div className="flex items-center gap-space-xs min-w-0">
           <span className="material-symbols-outlined text-primary text-[22px] shrink-0">
             {definicion.icon}
@@ -28,21 +31,26 @@ export function StudyFormSection({
             {definicion.label}
           </h3>
         </div>
-        <span
-          className={`shrink-0 inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-label-sm text-label-sm ${
-            cargado
-              ? "bg-success-container text-on-success-container"
-              : "bg-surface-variant text-on-surface-variant"
-          }`}
-        >
-          <span className="material-symbols-outlined text-[14px]">
-            {cargado ? "check_circle" : "edit"}
+        <div className="flex items-center gap-space-xs shrink-0">
+          <span
+            className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full font-label-sm text-label-sm ${
+              cargado
+                ? "bg-success-container text-on-success-container"
+                : "bg-surface-variant text-on-surface-variant"
+            }`}
+          >
+            <span className="material-symbols-outlined text-[14px]">
+              {cargado ? "check_circle" : "edit"}
+            </span>
+            {cargado ? "Cargado" : "Listo para cargar"}
           </span>
-          {cargado ? "Cargado" : "Listo para cargar"}
-        </span>
-      </div>
+          <span className="material-symbols-outlined text-on-surface-variant text-[20px] transition-transform group-open:rotate-180">
+            expand_more
+          </span>
+        </div>
+      </summary>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-sm px-space-md pb-space-md">
         {definicion.campos.map((campo) => {
           const name = `${definicion.tipo}.${campo.name}`;
           const fullWidth = campo.type === "textarea" || campo.type === "select";
@@ -99,6 +107,6 @@ export function StudyFormSection({
           );
         })}
       </div>
-    </section>
+    </details>
   );
 }

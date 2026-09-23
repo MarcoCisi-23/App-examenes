@@ -20,7 +20,7 @@ export default async function PerfilPage() {
     <TabShell active="perfil">
       <section className="flex flex-col items-center text-center gap-1">
         <Avatar nombre={evaluador.nombre} apellido={evaluador.apellido} size="lg" />
-        <h1 className="font-headline-sm text-headline-sm text-on-surface">
+        <h1 className="font-headline-lg text-headline-lg text-on-surface">
           Dr. {evaluador.nombre} {evaluador.apellido}
         </h1>
         <p className="font-body-sm text-body-sm text-on-surface-variant">

@@ -81,21 +81,28 @@ export function ExamFormClient({
         />
       ))}
 
-      <section className="bg-surface-container-lowest rounded-xl p-space-md shadow-card flex flex-col gap-space-sm">
-        <h2 className="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
-          <span className="material-symbols-outlined text-primary text-[22px]">
-            gavel
+      <details className="group bg-surface-container-lowest rounded-xl shadow-card" open>
+        <summary className="flex items-center justify-between p-space-md cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+          <h2 className="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2">
+            <span className="material-symbols-outlined text-primary text-[22px]">
+              gavel
+            </span>
+            Dictamen Preliminar
+          </h2>
+          <span className="material-symbols-outlined text-on-surface-variant text-[20px] transition-transform group-open:rotate-180">
+            expand_more
           </span>
-          Dictamen Preliminar
-        </h2>
-        <DictamenSelector defaultValue={asignacion.dictamen} />
-        <Textarea
-          name="observaciones"
-          label="Observaciones Médicas y Recomendaciones"
-          placeholder="Notas clínicas para uso profesional..."
-          defaultValue={asignacion.observacionesMedicas ?? ""}
-        />
-      </section>
+        </summary>
+        <div className="flex flex-col gap-space-sm px-space-md pb-space-md">
+          <DictamenSelector defaultValue={asignacion.dictamen} />
+          <Textarea
+            name="observaciones"
+            label="Observaciones Médicas y Recomendaciones"
+            placeholder="Notas clínicas para uso profesional..."
+            defaultValue={asignacion.observacionesMedicas ?? ""}
+          />
+        </div>
+      </details>
 
       {state?.error && (
         <p
