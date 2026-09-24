@@ -53,6 +53,12 @@ export function asignacionBadgeInfo(
         className: "bg-primary-container text-on-primary-container",
         pulse: true,
       };
+    case "AUSENTE":
+      return {
+        label: "Ausente",
+        icon: "person_off",
+        className: "bg-surface-variant text-on-surface-variant",
+      };
     case "PENDIENTE":
     default:
       return {

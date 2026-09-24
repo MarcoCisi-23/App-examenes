@@ -6,7 +6,12 @@ export const ESTADOS_LOTE = [
 ] as const;
 export type EstadoLote = (typeof ESTADOS_LOTE)[number];
 
-export const ESTADOS_ASIGNACION = ["PENDIENTE", "EN_CURSO", "COMPLETADO"] as const;
+export const ESTADOS_ASIGNACION = [
+  "PENDIENTE",
+  "EN_CURSO",
+  "COMPLETADO",
+  "AUSENTE",
+] as const;
 export type EstadoAsignacion = (typeof ESTADOS_ASIGNACION)[number];
 
 export const ESTADOS_ESTUDIO = ["PENDIENTE", "LISTO", "CARGADO"] as const;

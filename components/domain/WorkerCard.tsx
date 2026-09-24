@@ -1,69 +1,33 @@
 "use client";
 
-import Link from "next/link";
-import { Badge } from "@/components/ui/Badge";
-import { asignacionBadgeInfo } from "@/lib/estadoUi";
 import type { TrabajadorRosterItem } from "@/lib/queries/trabajadores";
 
 export function WorkerCard({
   worker,
-  loteId,
   onSelect,
 }: {
   worker: TrabajadorRosterItem;
-  loteId: string;
   onSelect: () => void;
 }) {
-  const badge = asignacionBadgeInfo(
-    worker.estado,
-    worker.estudiosCargados,
-    worker.estudiosTotal,
-  );
+  const finalizado = worker.estado === "COMPLETADO";
 
   return (
     <article
       onClick={onSelect}
-      className="flex flex-col bg-surface-container-lowest rounded-xl p-space-md shadow-card cursor-pointer transition-transform active:scale-[0.99]"
+      className="flex items-center justify-between gap-space-sm bg-surface-container-lowest rounded-xl px-space-md py-space-sm shadow-card cursor-pointer transition-transform active:scale-[0.99]"
     >
       <div className="min-w-0">
-        <div className="flex items-start justify-between gap-space-xs">
-          <h3 className="font-title text-title text-on-surface leading-tight truncate">
-            {worker.apellido}, {worker.nombre}
-          </h3>
-          <Badge icon={badge.icon} className={badge.className} pulse={badge.pulse}>
-            {badge.label}
-          </Badge>
-        </div>
+        <h3 className="font-title text-title text-on-surface leading-tight truncate">
+          {worker.apellido}, {worker.nombre}
+        </h3>
         <p className="font-body-sm text-body-sm text-on-surface-variant truncate">
-          DNI {worker.dni} • {worker.edad} años • {worker.puesto}
+          DNI {worker.dni}
         </p>
-        {worker.turnoEtiqueta && (
-          <p className="font-label-sm text-label-sm text-primary mt-1">
-            {worker.turnoEtiqueta}
-          </p>
-        )}
       </div>
-
-      {worker.estado === "PENDIENTE" && (
-        <Link
-          href={`/examenes/${loteId}/trabajador/${worker.trabajadorId}`}
-          onClick={(e) => e.stopPropagation()}
-          className="mt-space-sm w-full min-h-touch-target-min px-space-md bg-primary-container text-on-primary rounded-xl flex items-center justify-center gap-2 font-label-lg text-label-lg active:scale-[0.99] transition-transform"
-        >
-          <span className="material-symbols-outlined text-[20px]">clinical_notes</span>
-          Iniciar Examen
-        </Link>
-      )}
-
-      {worker.estado === "EN_CURSO" && (
-        <Link
-          href={`/examenes/${loteId}/trabajador/${worker.trabajadorId}`}
-          onClick={(e) => e.stopPropagation()}
-          className="mt-space-sm w-full min-h-touch-target-min px-space-md bg-surface-container-high text-on-surface rounded-xl flex items-center justify-center gap-2 font-label-lg text-label-lg active:scale-[0.99] transition-transform"
-        >
-          <span className="material-symbols-outlined text-[20px]">edit_note</span>
-          Continuar Examen
-        </Link>
+      {finalizado && (
+        <span className="material-symbols-outlined text-success text-[22px] shrink-0">
+          check_circle
+        </span>
       )}
     </article>
   );

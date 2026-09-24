@@ -72,7 +72,7 @@ model AsignacionExamen {
   lote                 Lote               @relation(fields: [loteId], references: [id])
   trabajadorId         String
   trabajador           Trabajador         @relation(fields: [trabajadorId], references: [id])
-  estado               String             // PENDIENTE | EN_CURSO | COMPLETADO
+  estado               String             // PENDIENTE | EN_CURSO | COMPLETADO | AUSENTE
   dictamen             String?            // APTO | APTO_CON_PREEXISTENCIAS | NO_APTO_TEMPORAL
   observacionesMedicas String?
   evaluadorId          String?

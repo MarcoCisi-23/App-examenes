@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useTransition } from "react";
 import { BottomSheet } from "@/components/ui/BottomSheet";
 import { Button } from "@/components/ui/Button";
+import { marcarAusente } from "@/actions/examenes";
 import { asignacionBadgeInfo } from "@/lib/estadoUi";
 import type { TrabajadorRosterItem } from "@/lib/queries/trabajadores";
 
@@ -13,9 +17,18 @@ export function WorkerSheet({
   loteId: string;
   onClose: () => void;
 }) {
+  const [pending, startTransition] = useTransition();
   const badge = worker
     ? asignacionBadgeInfo(worker.estado, worker.estudiosCargados, worker.estudiosTotal)
     : null;
+
+  function handleMarcarAusente() {
+    if (!worker) return;
+    startTransition(async () => {
+      await marcarAusente(loteId, worker.asignacionId);
+      onClose();
+    });
+  }
 
   return (
     <BottomSheet open={worker !== null} onClose={onClose}>
@@ -26,7 +39,7 @@ export function WorkerSheet({
               {worker.apellido}, {worker.nombre}
             </h2>
             <p className="font-body-sm text-body-sm text-on-surface-variant">
-              DNI {worker.dni} • {worker.puesto}
+              DNI {worker.dni} • {worker.edad} años • {worker.puesto}
             </p>
           </div>
 
@@ -71,17 +84,33 @@ export function WorkerSheet({
             </ul>
           </div>
 
-          <Link href={`/examenes/${loteId}/trabajador/${worker.trabajadorId}`}>
-            <Button
-              variant="primary"
-              icon={worker.estado === "COMPLETADO" ? "description" : "clinical_notes"}
-              className="w-full"
-            >
-              {worker.estado === "COMPLETADO"
-                ? "Ver Certificado Médico ART"
-                : "Cargar Examen en Box"}
-            </Button>
-          </Link>
+          {worker.estado === "COMPLETADO" ? (
+            <Link href={`/examenes/${loteId}/trabajador/${worker.trabajadorId}`}>
+              <Button variant="primary" icon="description" className="w-full">
+                Ver Certificado Médico ART
+              </Button>
+            </Link>
+          ) : (
+            <div className="flex flex-col gap-space-xs">
+              <Link href={`/examenes/${loteId}/trabajador/${worker.trabajadorId}`}>
+                <Button variant="primary" icon="clinical_notes" className="w-full">
+                  {worker.estado === "EN_CURSO" ? "Continuar Examen" : "Iniciar Examen"}
+                </Button>
+              </Link>
+              {worker.estado === "PENDIENTE" && (
+                <Button
+                  type="button"
+                  variant="secondary"
+                  icon="person_off"
+                  disabled={pending}
+                  onClick={handleMarcarAusente}
+                  className="w-full"
+                >
+                  Marcar como Ausente
+                </Button>
+              )}
+            </div>
+          )}
         </div>
       )}
     </BottomSheet>

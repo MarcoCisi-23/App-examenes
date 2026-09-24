@@ -93,7 +93,6 @@ export function RosterInteractive({
             <WorkerCard
               key={worker.trabajadorId}
               worker={worker}
-              loteId={loteId}
               onSelect={() => setSeleccionado(worker)}
             />
           ))}

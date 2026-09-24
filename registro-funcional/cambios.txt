@@ -124,3 +124,13 @@ IDENTIDAD VISUAL / INFRAESTRUCTURA
 - En todas las pantallas se agregó un poco más de espacio entre la
   barra superior (header) y el título de la pantalla, para que no se
   vea tan pegado.
+- En la nómina de un lote (vista de detalle de examen), la tarjeta de
+  cada trabajador se simplificó: ahora solo muestra nombre y DNI, sin
+  puesto, edad ni botón de "Iniciar Examen". Solo se marca con un
+  tilde verde a los trabajadores que ya finalizaron el examen; el
+  estado "Pendiente" no se muestra.
+- Al tocar un trabajador en la nómina se abre un panel con su detalle
+  completo (puesto, edad, estudios, observaciones) y ahí aparecen las
+  acciones: Iniciar Examen (o Continuar/Ver Certificado según el
+  estado) y, para los pendientes, un botón nuevo "Marcar como
+  Ausente" para registrar que el trabajador no se presentó.

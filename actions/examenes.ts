@@ -127,3 +127,18 @@ export async function guardarExamen(
       "Borrador guardado. Los cambios se preservaron para continuar más tarde.",
   };
 }
+
+export async function marcarAusente(
+  loteId: string,
+  asignacionId: string,
+): Promise<void> {
+  await requireSessionEvaluador();
+
+  await prisma.asignacionExamen.update({
+    where: { id: asignacionId },
+    data: { estado: "AUSENTE", turnoEtiqueta: null },
+  });
+
+  revalidatePath(`/examenes/${loteId}/nomina`);
+  revalidatePath("/examenes");
+}
