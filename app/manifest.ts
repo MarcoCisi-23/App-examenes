@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "ART Sanidad Móvil",
-    short_name: "ART Sanidad",
+    name: "Andina EMP",
+    short_name: "Andina EMP",
     description: "Exámenes médicos periódicos — ANDINA ART",
     start_url: "/",
     display: "standalone",

@@ -16,7 +16,7 @@ export function TabShell({
   return (
     <div className="min-h-dvh flex flex-col bg-surface">
       <AppHeader subtitle={SUBTITLES[active]} active={active} />
-      <main className="flex-1 pt-16 pb-space-xl px-margin-screen flex flex-col gap-space-md">
+      <main className="flex-1 pt-20 pb-space-xl px-margin-screen flex flex-col gap-space-md">
         {children}
       </main>
     </div>

@@ -28,7 +28,7 @@ export function DrilldownShell({
         </div>
       </header>
       <main
-        className={`flex-1 pt-16 px-margin-screen flex flex-col gap-space-md ${
+        className={`flex-1 pt-20 px-margin-screen flex flex-col gap-space-md ${
           footer ? "pb-32" : "pb-space-xl"
         }`}
       >

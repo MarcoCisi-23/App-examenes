@@ -113,3 +113,14 @@ IDENTIDAD VISUAL / INFRAESTRUCTURA
   completo, y unas flechas circulares cuando todavía está en curso.
 - Se sacó también el círculo azul con las iniciales de cada trabajador
   en la nómina (vista de detalle de un examen/lote).
+
+-----------------------------------------------------------------------------
+2026-09-24
+-----------------------------------------------------------------------------
+- El ícono de la app y el nombre que aparece al agregarla a la pantalla
+  de inicio del celular ahora son "Andina EMP" (antes decía "ART
+  Sanidad"). El ícono ya usaba el logo de Andina, ahora coincide también
+  el nombre.
+- En todas las pantallas se agregó un poco más de espacio entre la
+  barra superior (header) y el título de la pantalla, para que no se
+  vea tan pegado.
