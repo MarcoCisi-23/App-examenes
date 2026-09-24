@@ -4,12 +4,10 @@ export function Badge({
   icon,
   children,
   className,
-  pulse,
 }: {
   icon?: string;
   children: React.ReactNode;
   className?: string;
-  pulse?: boolean;
 }) {
   return (
     <span
@@ -18,16 +16,7 @@ export function Badge({
         className,
       )}
     >
-      {icon && (
-        <span
-          className={clsx(
-            "material-symbols-outlined text-[14px]",
-            pulse && "animate-pulse",
-          )}
-        >
-          {icon}
-        </span>
-      )}
+      {icon && <span className="material-symbols-outlined text-[14px]">{icon}</span>}
       {children}
     </span>
   );

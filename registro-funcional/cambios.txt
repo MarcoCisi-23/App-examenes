@@ -134,3 +134,7 @@ IDENTIDAD VISUAL / INFRAESTRUCTURA
   acciones: Iniciar Examen (o Continuar/Ver Certificado según el
   estado) y, para los pendientes, un botón nuevo "Marcar como
   Ausente" para registrar que el trabajador no se presentó.
+- Pasada de limpieza de diseño (distill + quieter) sobre toda la app:
+  se sacó una animación que había quedado sin uso (un ícono
+  parpadeando en "En Curso" que ya no se veía en ningún lado) y se
+  confirmó que no quedan tarjetas anidadas ni componentes sin usar.

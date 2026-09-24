@@ -38,7 +38,7 @@ export function asignacionBadgeInfo(
   estado: EstadoAsignacion,
   estudiosCargados: number,
   estudiosTotal: number,
-): { label: string; icon: string; className: string; pulse?: boolean } {
+): { label: string; icon: string; className: string } {
   switch (estado) {
     case "COMPLETADO":
       return {
@@ -51,7 +51,6 @@ export function asignacionBadgeInfo(
         label: `En Curso (${estudiosCargados}/${estudiosTotal})`,
         icon: "bolt",
         className: "bg-primary-container text-on-primary-container",
-        pulse: true,
       };
     case "AUSENTE":
       return {
